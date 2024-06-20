@@ -71,6 +71,28 @@ class MessageBoxDialog final : public ImGuiDialog {
         Close();
       }
       ImGui::EndPopup();
+
+                    ImGui::Begin(
+          "Hello, world!", nullptr,
+          ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse ||
+              ImGuiWindowFlags_AlwaysAutoResize);  // Create a window called
+                                                   // "Hello, world!" and append
+                                                   // into it.
+
+      for (int row = 0; row < 4; row++) {
+        ImGui::BeginGroup();
+        for (int col = 0; col < 4; col++) {
+          ImGui::BeginChild(ImGui::GetID((void*)(intptr_t)(row * 4 + col)),
+                            ImVec2(50.0f, 50.0f), true);
+          ImGui::Text("Box %d,%d", row, col);
+          ImGui::EndChild();
+          ImGui::SameLine();
+        }
+        ImGui::EndGroup();
+      }
+
+      ImGui::End();
+
     } else {
       Close();
     }
